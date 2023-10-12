@@ -17,6 +17,7 @@ function App() {
     const email = form.email.value;
     const user = { name, email };
     console.log(user);
+    // send data to backend
     fetch("http://localhost:5000/users", {
       method: "POST",
       headers: {
@@ -27,12 +28,16 @@ function App() {
       .then(res => res.json())
       .then(data => {
         console.log(data);
+
+        // create new users
         const newUsers = [...users, data];
+
+        // set users to displayed users
         setUsers(newUsers);
 
+        // reset the form(e.target.reset())
         form.reset();
-      })
-      .catch(error => console.log(error));
+      });
   };
 
   return (
